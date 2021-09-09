@@ -1,9 +1,17 @@
+### exclude all
 *
 
+### include some folders (recursive):
+!ds
+!ds/**
+
+
+### include some file extentions (root dir):
 !*.md
-!.gitignore
-!*.cpp
-!*.hpp
 !*.in
 !*.cmake
+
+
+### include specific files (root dir):
+!.gitignore
 !CMakeLists.txt
