@@ -1,8 +1,5 @@
 *
 
-!src/
-!src/tests
-
 !*.md
 !.gitignore
 !*.cpp
