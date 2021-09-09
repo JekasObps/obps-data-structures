@@ -2,7 +2,7 @@
 ### TESTING: ###
 ################
 
-if (MAIN_PROJECT)
+if (${MAIN_PROJECT} OR ${TEST_ALL})
     message("Enable Testing:")
     enable_testing(True)
 
@@ -28,11 +28,15 @@ if (MAIN_PROJECT)
         list(APPEND test_targets ${test_name})
 
         add_executable(${test_name} ${test_source})
-        target_link_libraries(${test_name} PRIVATE abstract_factory
+        target_link_libraries(${test_name} PRIVATE thread_pool
                                       PRIVATE gtest_main)
         set_target_properties(${test_name} PROPERTIES CXX_STANDARD 20)
         add_test(NAME ${test_name} COMMAND ${test_name})
     endforeach()
 
-    gtest_discover_tests(${test_targets})
+    if (${test_targets})
+        gtest_discover_tests(${test_targets})
+    else()
+        message("Tests not found!")
+    endif()
 endif() # MAIN_PROJECT
