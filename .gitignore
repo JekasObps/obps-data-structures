@@ -1,0 +1,12 @@
+*
+
+!src/
+!src/tests
+
+!*.md
+!.gitignore
+!*.cpp
+!*.hpp
+!*.in
+!*.cmake
+!CMakeLists.txt
