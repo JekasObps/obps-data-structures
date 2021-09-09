@@ -2,6 +2,9 @@
 *
 
 ### include some folders (recursive):
+
+!build_scripts
+!build_scripts/**
 !ds
 !ds/**
 

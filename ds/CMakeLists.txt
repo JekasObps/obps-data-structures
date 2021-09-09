@@ -1,5 +1,5 @@
-
-MACRO(SUBDIRLIST result curdir)
+# listing directory
+macro(SUBDIRLIST result curdir)
     file(GLOB children RELATIVE ${curdir} ${curdir}/*)
     set(subdirs "")
     foreach(child ${children})
@@ -8,11 +8,10 @@ MACRO(SUBDIRLIST result curdir)
         endif()
     endforeach()
     set(${result} ${subdirs})
-ENDMACRO()
+endmacro()
 
 SUBDIRLIST(ds ${CMAKE_CURRENT_SOURCE_DIR})
-
-message("DataStructures: ${ds}")
+message(STATUS "DataStructures: ${ds}")
 
 foreach(data_structure ${ds})
     add_subdirectory(${data_structure})

@@ -2,11 +2,11 @@ cmake_minimum_required(VERSION 3.20)
 
 set(CMAKE_CXX_STANDARD 20)
 
-project(thread_pool VERSION 1.0)
+project(abstract_factory VERSION 1.0)
 
-add_library(thread_pool INTERFACE)
+add_library(abstract_factory INTERFACE)
 
-target_include_directories(thread_pool
+target_include_directories(abstract_factory
     INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
