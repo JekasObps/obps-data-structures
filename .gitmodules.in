@@ -1,4 +1,0 @@
-
-foreach(module ${GIT_SUBMODULES})
-    
-endforech()

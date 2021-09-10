@@ -1,3 +1,0 @@
-[submodule "repo/build_scripts"]
-	path = repo/build_scripts
-	url = https://github.com/JekasObps/build-scripts.git

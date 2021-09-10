@@ -8,9 +8,9 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
     set(MAIN_PROJECT ON)
 endif()
 
-# include(LoadSubmodules.cmake)
+include(Import.cmake)
 
-# add_subdirectory(repo/build_scripts)
+import_build_scripts()
 
 # enable tests for these targets
 list(APPEND TEST_TARGETS
@@ -20,7 +20,7 @@ list(APPEND TEST_TARGETS
 
 if (TEST_TARGETS)
     enable_testing(on)
-    # FetchContent_MakeAvailable(googletest)
+    import_gtest()
 endif()
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/ds)
