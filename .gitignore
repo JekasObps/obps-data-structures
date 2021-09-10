@@ -17,4 +17,5 @@
 
 ### include specific files (root dir):
 !.gitignore
+!.gitmodules
 !CMakeLists.txt
