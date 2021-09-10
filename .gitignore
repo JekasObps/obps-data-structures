@@ -3,8 +3,8 @@
 
 ### include some folders (recursive):
 
-!build_scripts
-!build_scripts/**
+!repo
+!repo/**
 !ds
 !ds/**
 

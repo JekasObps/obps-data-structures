@@ -1,10 +1,16 @@
 cmake_minimum_required(VERSION 3.20)
 
-
 set(CMAKE_CXX_STANDARD 20)
 project(obps_data_structures)
 
-add_subdirectory(build_scripts)
+set(MAIN_PROJECT OFF)
+if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+    set(MAIN_PROJECT ON)
+endif()
+
+include(LoadSubmodules.cmake)
+
+# add_subdirectory(build_scripts)
 
 # enable tests for these targets
 list(APPEND TEST_TARGETS
