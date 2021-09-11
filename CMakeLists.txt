@@ -9,18 +9,14 @@ import_build_scripts()
 check_main_project()
 check_build()
 
-# enable tests for these targets
-if(NOT TEST_TARGETS)
-list(APPEND TEST_TARGETS
-    abstract_factory
-    ring_queue
-)
-endif()
+enable_testing(on)
+import_gtest()
 
-if (TEST_TARGETS)
-    enable_testing(on)
-    import_gtest()
-endif()
+# enable tests for these targets
+enable_subproject_tests( abstract_factory TEST_ALL)
+
+# enable tests for these targets
+enable_subproject_tests( ring_queue TEST_ALL)
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/ds)
 
