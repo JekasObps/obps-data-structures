@@ -20,7 +20,6 @@ class RingQueue final
 {
     static_assert(msg_size > 0, "Message size must be greater than 0!");
     static_assert(msg_size <= 1024, "Max Message size is 1024 bytes!");
-    static_assert(msg_size % sizeof(size_t) == 0, "message must be aligned to word size");
 
 public:
     enum class OperationStatus {SUCCESS, SHUTDOWN, FAIL};
