@@ -7,7 +7,7 @@
 #include <functional>
 
 #include <mutex>
-#include <cstdio>
+#include <iostream>
 
 #include "spinlock.hpp"
 
