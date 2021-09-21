@@ -7,6 +7,8 @@
 #include <functional>
 
 #include <mutex>
+#include <cstdio>
+
 #include "spinlock.hpp"
 
 namespace obps
@@ -47,7 +49,6 @@ private:
     std::forward_list<std::tuple<std::promise<ThreadRet>, std::future<ThreadRet>, std::thread>> m_Tasks;
     spinlock m_PoolLock;    // prevents race-condition when running tasks and on shutdown
 };
-
 
 
 template <typename ThreadRet, ThreadRet running, ThreadRet finished, ThreadRet aborted>
