@@ -11,14 +11,14 @@ protected:
 
 };
 
-enum STATUS{A, B, C};
+enum STATUS{RUNNING, FINISHED, ABORT};
 
 TEST_F(TestThreadPool, Test)
 {
-    ThreadPool<STATUS, STATUS::A, STATUS::B, STATUS::C> pool;
+    ThreadPool<STATUS, RUNNING, FINISHED, ABORT> pool;
     pool.RunTask<int>([](int i) { 
         std::cout << i << std::endl;
-        return STATUS::A;}, 53);
+        return FINISHED;}, 53);
 
     pool.ShutDown();
 }
