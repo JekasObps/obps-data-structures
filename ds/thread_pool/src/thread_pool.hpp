@@ -46,13 +46,12 @@ private:
     PoolState m_State;
 
     template <typename ...Args>
-    void PoolThread(std::function<ThreadRet(Args...)>, Args...);
+    ThreadRet PoolThread(std::function<ThreadRet(Args...)>, Args...);
 
     std::forward_list<std::future<ThreadRet>> m_Tasks;
     
     spinlock m_PoolLock;    // prevents race-condition when running tasks and on shutdown
 };
-
 
 template <typename ThreadRet, ThreadRet running, ThreadRet finished, ThreadRet aborted>
 template <typename ...Args> 
@@ -61,12 +60,15 @@ void ThreadPool<ThreadRet, running, finished, aborted>::RunTask(
 {
     std::lock_guard<spinlock> lock(m_PoolLock);
 
-    m_Tasks.push_front(std::async<std::function<ThreadRet(Args...)>, Args...>(std::launch::async, std::move(user_thread_func), std::forward<Args>(args)...));
+    m_Tasks.emplace_front(std::async(std::launch::async, [this, user_thread_func, &args...]()
+    {
+        return PoolThread(user_thread_func, args...);
+    }));
 }
 
 template <typename ThreadRet, ThreadRet running, ThreadRet finished, ThreadRet aborted>
 template <typename ...Args> 
-void ThreadPool<ThreadRet, running, finished, aborted>::PoolThread( 
+ThreadRet ThreadPool<ThreadRet, running, finished, aborted>::PoolThread( 
     std::function<ThreadRet(Args...)> user_thread_func, Args ...args)
 {
     for(;;) {
@@ -84,7 +86,6 @@ void ThreadPool<ThreadRet, running, finished, aborted>::PoolThread(
         return status;
     } // for(;;)
 }
-
 
 template <typename ThreadRet, ThreadRet running, ThreadRet completed, ThreadRet aborted>
 void ThreadPool<ThreadRet, running, completed, aborted>::ShutDown() noexcept
