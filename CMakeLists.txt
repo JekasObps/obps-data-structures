@@ -18,5 +18,8 @@ enable_subproject_tests( abstract_factory TEST_ALL)
 # enable tests for these targets
 enable_subproject_tests( ring_queue TEST_ALL)
 
+# enable tests for these targets
+enable_subproject_tests( thread_pool TEST_ALL)
+
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/ds)
 
