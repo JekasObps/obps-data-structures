@@ -60,7 +60,7 @@ void ThreadPool<ThreadRet, running, finished, aborted>::RunTask(
 {
     std::lock_guard<spinlock> lock(m_PoolLock);
 
-    m_Tasks.emplace_front(std::async(std::launch::async, [this, user_thread_func, &args...]()
+    m_Tasks.emplace_front(std::async(std::launch::async, [this, user_thread_func, args...]()
     {
         return PoolThread(user_thread_func, args...);
     }));
